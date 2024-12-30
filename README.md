@@ -3,13 +3,13 @@ A short, sweet, simple unit test framework for Lua. Refer to `example.lua` for u
 # Creating a test suite
 Import the test script.
 
-```
+```Lua
 local test = require('lunit').create()
 ```
 
 Register tests with `test:test(name, fn)`. Write your test code in `fn`, and use `test:expect()` statements to make your assertions.
 
-```
+```Lua
 test:test("True is true", function()
   test:expect(true).is_true()
 end)
@@ -21,6 +21,6 @@ test:test("Basic maths is real", function()
 
 Run your registered tests.
 
-```
+```Lua
 test:run()
 ```
