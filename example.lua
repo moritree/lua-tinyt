@@ -16,4 +16,8 @@ test:test("Definitely true", function()
     test:expect(1 == 1).is_true()
 end)
 
+test:test("Number is number", function()
+    test:expect(42).is_type("number")
+end)
+
 test:run()

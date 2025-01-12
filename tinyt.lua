@@ -77,6 +77,9 @@ function TestRunner:expect(actual)
             if expected_err and not string.match(err, expected_err) then
                 error(string.format("expected error matching '%s', got '%s'", expected_err, err))
             end
+        end,
+        is_type = function(expected_type)
+            return type(actual) == expected_type
         end
     }
 end
