@@ -46,7 +46,9 @@ end
 local TestRunner = {
     tests = {},
     before_each = function() end,
-    after_each = function() end
+    after_each = function() end,
+    setup = function() end,
+    teardown = function() end,
 }
 
 -- Create a new test suite
@@ -82,6 +84,7 @@ end
 function TestRunner:run()
     local results = { passed = {}, failed = {}, details = {} }
 
+    self.setup()
     for ind, test in ipairs(self.tests) do
         local ok, err = xpcall(function()
             self.before_each()
@@ -95,6 +98,7 @@ function TestRunner:run()
             table.insert(results.failed, { status = colored("FAIL", color.red), error = err, name = test.name, id = ind })
         end
     end
+    self.teardown()
 
     print(string.format("Ran %d tests%s...\t%s: %d, %s: %d", #results.passed + #results.failed,
         (self.name and string.format(" in %s", self.name) or ""),
